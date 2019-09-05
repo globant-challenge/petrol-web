@@ -51,7 +51,6 @@ class ActionChart extends Component {
       }
     };
 
-    console.log(options)
     return (
       <div>
         <HighchartsReact

@@ -1,6 +1,7 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, delay } from 'redux-saga/effects';
 
 import {
+  getActions as getActionsAction,
   getActionsSuccess,
   getActionsFail,
   getActionsHistoricalSuccess,
@@ -20,6 +21,8 @@ function* getActionsWorker() {
   try {
     const payload = yield call(getActions);
     yield put(getActionsSuccess(payload));
+    yield delay(60000);
+    yield put(getActionsAction());
   } catch ({ message }) {
     yield put(getActionsFail(message));
   }
