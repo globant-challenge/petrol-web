@@ -1,6 +1,6 @@
 import { all, fork } from 'redux-saga/effects';
 
-import WeatherWidget from '../components/WeatherWidget/sagas';
+import WeatherWidget from '../WeatherWidget/sagas';
 
 
 export default function* rootSaga() {
