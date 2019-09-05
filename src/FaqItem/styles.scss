@@ -1,7 +1,13 @@
 .faq-item {
+
+  &__question {
+    padding: 5px;
+    cursor: pointer;
+  }
   &__container-content {
     min-height: 50px;
     width: 100%;
-    background: red;
+    background: #fff;
+    padding: 5px;
   }
 }

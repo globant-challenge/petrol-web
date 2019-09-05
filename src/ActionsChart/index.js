@@ -10,14 +10,12 @@ class ActionChart extends Component {
     const days = data.map(stats => moment(stats.timestamp).format('DD-MM-YYYY'));
 
     const options =  {
-
       title: {
           text: 'Accion Ecopetrol'
       },
       xAxis: {
         categories: days,
       },
-    
       yAxis: {
           title: {
               text: 'Price'
@@ -28,7 +26,6 @@ class ActionChart extends Component {
           align: 'right',
           verticalAlign: 'middle'
       },
-    
       plotOptions: {
         line: {
             dataLabels: {
@@ -36,12 +33,10 @@ class ActionChart extends Component {
             },
         }
     },
-    
       series: [{
           name: 'Price',
           data: [...toShow]
       }],
-    
       responsive: {
           rules: [{
               condition: {

@@ -18,7 +18,12 @@ class FaqItem extends Component {
     const { question, answer } = this.props;
     return (
       <div>
-        <div color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>
+        <div
+          className="faq-item__question"
+          color="primary"
+          onClick={this.toggle}
+          style={{ marginBottom: '1rem' }
+        }>
          {question}
         </div>
         <Collapse isOpen={this.state.collapse}>

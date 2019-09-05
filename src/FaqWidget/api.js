@@ -6,6 +6,6 @@ export function getFaqs() {
       'content-Type': 'application/x-www-form-urlencoded',
     },
   })
-  .then((data) => console.log(data))
+  .then(({ data }) => data)
   .catch((res) => res)
 };

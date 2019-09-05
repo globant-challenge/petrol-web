@@ -1,19 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-
 import WeatherWidget from '../WeatherWidget';
 import BarrelWidget from '../BarrelWidget';
 import ActionWidget from '../ActionsWidget';
 import ActionsChart from '../ActionsChart';
 
+import './styles.scss';
+
 function Dashboard({ historicals }) {
   return (
-    <Fragment>
+    <div className="dashboard">
       <WeatherWidget />
       {historicals && <ActionsChart data={historicals} />}
-      <BarrelWidget />
-      <ActionWidget />
-    </Fragment>
+      <div className="dashboard__cards">
+        <BarrelWidget />
+        <ActionWidget />
+      </div>
+    </div>
   );
 }
 

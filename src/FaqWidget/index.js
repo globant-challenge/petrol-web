@@ -13,14 +13,22 @@ class FaqWidget extends Component {
   }
 
   render() {
+    const { faqs } = this.props;
     return (
       <div className="faq-widget">
-        <FaqItem />
-        <FaqItem />
-        <FaqItem />
+        {faqs.map(faq => (
+          <FaqItem
+            question={faq.question}
+            answer={faq.answer}
+          />
+        ))}
       </div>
     );
   }
 }
 
-export default connect(null, { getFaqs })(FaqWidget);
+const mapStateToProps = state => ({
+  faqs: state.faqsWidget.faqs,
+})
+
+export default connect(mapStateToProps, { getFaqs })(FaqWidget);

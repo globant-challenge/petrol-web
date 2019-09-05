@@ -17,7 +17,7 @@ import {
 function* getActionsWorker() {
   try {
     const payload = yield call(getActions);
-    const actions = takeRight(payload.results, 6);
+    const actions = takeRight(payload.results, 15);
     console.log(actions);
     yield put(getActionsSuccess(actions));
   } catch ({ message }) {
