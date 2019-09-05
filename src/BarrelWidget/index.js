@@ -12,17 +12,24 @@ class BarrelWidget extends Component {
   }
 
   render() {
+    const {
+      price,
+    } = this.props;
     return (
       <div className="barrel">
         <div className="barrel__title">
           Crudo Brent
         </div>
         <div className="barrel__price">
-          USD $60.40
+          USD ${price}
         </div>
       </div>
     );
   }
 }
 
-export default connect(null, { getBarrelData })(BarrelWidget);
+const mapStateToProps = state => ({
+  price: state.barrelWidget.price,
+})
+
+export default connect(mapStateToProps, { getBarrelData })(BarrelWidget);

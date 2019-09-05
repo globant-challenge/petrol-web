@@ -7,7 +7,7 @@ import {
 const defaultState = {
   errorMessage: null,
   fetching: false,
-  weather: {},
+  price: undefined,
 };
 
 export default (state = defaultState, { type, payload }) => {
@@ -17,16 +17,16 @@ export default (state = defaultState, { type, payload }) => {
         ...state,
         fetching: true,
       };
-    case GET_BARREL_DATA_SUCCESS:
+    case GET_BARREL_DATA_FAIL:
       return {
         ...state,
         errorMessage: payload,
         fetching: false,
       };
-    case GET_BARREL_DATA_FAIL:
+    case GET_BARREL_DATA_SUCCESS:
       return {
         ...state,
-        weather: payload,
+        price: payload.price,
         fetching: false,
       };
     default:

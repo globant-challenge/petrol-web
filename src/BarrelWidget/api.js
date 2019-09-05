@@ -1,4 +1,4 @@
-import { axios } from 'axios';
+import axios from 'axios';
 
 export function getBarrel() {
   return axios.get('https://api.oilpriceapi.com/v1/prices/latest', {
@@ -7,6 +7,6 @@ export function getBarrel() {
       ContentType: 'application/json',
     },
   })
-  .then((res) => console.log(res))
-  .catch((res) => console.log(res))
+  .then(({ data }) => data)
+  .catch((res) => res)
 };

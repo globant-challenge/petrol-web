@@ -13,10 +13,10 @@ import {
   getBarrel,
 } from './api';
 
-function* getBarrelWorker({ payload: { params } }) {
+function* getBarrelWorker() {
   try {
-    const payload = yield call(getBarrel, params);
-    yield put(getBarrelDataSuccess(payload));
+    const payload = yield call(getBarrel);
+    yield put(getBarrelDataSuccess(payload.data));
   } catch ({ message }) {
     yield put(getBarrelDataFail(message));
   }
