@@ -5,6 +5,9 @@ import {
   DELETE_FAQS_FAIL,
   DELETE_FAQS_SUCCESS,
   DELETE_FAQS,
+  ADD_FAQS,
+  ADD_FAQS_SUCCESS,
+  ADD_FAQS_FAIL,
 } from './actionTypes';
 
 function getFaqs() {
@@ -46,6 +49,26 @@ function deleteFaqsFail() {
   };
 }
 
+function addFaqs(ask, answ) {
+  return {
+    type: ADD_FAQS,
+    payload: { ask, answ },
+  };
+}
+
+function addFaqsSuccess(payload) {
+  return {
+    type: ADD_FAQS_SUCCESS,
+    payload,
+  };
+}
+
+function addFaqsFail() {
+  return {
+    type: ADD_FAQS_FAIL,
+  };
+}
+
 export {
   getFaqs,
   getFaqsFail,
@@ -53,4 +76,7 @@ export {
   deleteFaqs,
   deleteFaqsSuccess,
   deleteFaqsFail,
+  addFaqs,
+  addFaqsSuccess,
+  addFaqsFail,
 };

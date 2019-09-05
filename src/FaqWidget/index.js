@@ -4,7 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, In
 import FaqItem from '../FaqItem';
 import circle from '../Assets/Icons/circle.svg';
 
-import { getFaqs } from './actions';
+import { getFaqs, addFaqs } from './actions';
 import './styles.scss';
 
 class FaqWidget extends Component {
@@ -21,6 +21,15 @@ class FaqWidget extends Component {
   componentDidMount() {
     const { getFaqs } = this.props;
     getFaqs();
+  }
+
+  handleOnAdd() {
+    const { newAsk, newAnswer } = this.state;
+    const { addFaqs } = this.props;
+    addFaqs(newAsk, newAnswer);
+    this.setState({
+      open: false,
+    });
   }
 
   render() {
@@ -78,8 +87,8 @@ class FaqWidget extends Component {
           <ModalFooter>
             <Button
               disabled={!(newAsk && newAnswer)}
-              color="primary"
-              onClick={() => this.setState({ open: !this.state.open })}>Agregar</Button>{' '}
+              color="success"
+              onClick={() => this.handleOnAdd()}>Agregar</Button>{' '}
             <Button
               color="secondary"
               onClick={() => this.setState({ open: !this.state.open })}>Cancelar</Button>
@@ -95,4 +104,4 @@ const mapStateToProps = state => ({
   faqs: state.faqsWidget.faqs,
 })
 
-export default connect(mapStateToProps, { getFaqs })(FaqWidget);
+export default connect(mapStateToProps, { getFaqs, addFaqs })(FaqWidget);

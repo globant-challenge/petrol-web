@@ -15,3 +15,12 @@ export function deleteFaqs(id) {
   .then(({ data }) => data)
   .catch((res) => res)
 };
+
+export function addFaqs(ask, answ) {
+  return axios.post('https://ecdwapp01.azurewebsites.net/api/questions', {
+    question: ask,
+    answer: answ,
+  })
+  .then(({ data }) => data)
+  .catch((res) => res)
+};
