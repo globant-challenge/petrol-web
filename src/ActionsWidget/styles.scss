@@ -1,0 +1,39 @@
+.actions {
+  background: #fff;
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 4px;
+  margin-top: 10px;
+  width: 695px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Nunito', sans-serif;
+
+  &__title {
+    font-weight: bold;
+  }
+
+  &__price {
+    display: flex;  
+    align-items: center;
+    &-type {
+      border-radius: 8px;
+      color: #fff;
+      padding: 0 3px;
+      font-size: 10px;
+      background-color: #004036;
+      width: 42px;
+      height: 16px;
+      text-align: center;
+      margin-right: 5px;
+    }
+    color: #4a4a4a;
+    font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  }
+}
