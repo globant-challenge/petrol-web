@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { takeRight } from 'lodash';
 
 import {
   getActionsSuccess,
@@ -16,7 +17,9 @@ import {
 function* getActionsWorker() {
   try {
     const payload = yield call(getActions);
-    yield put(getActionsSuccess(payload.data));
+    const actions = takeRight(payload.results, 6);
+    console.log(actions);
+    yield put(getActionsSuccess(actions));
   } catch ({ message }) {
     yield put(getActionsFail(message));
   }

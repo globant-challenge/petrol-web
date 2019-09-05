@@ -26,7 +26,8 @@ export default (state = defaultState, { type, payload }) => {
     case GET_ACTIONS_SUCCESS:
       return {
         ...state,
-        price: payload.price,
+        historicals: payload,
+        price: payload[5].close,
         fetching: false,
       };
     default:
