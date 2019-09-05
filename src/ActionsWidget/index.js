@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getActions } from './actions';
+import { getActions, getActionsHistorical } from './actions';
 import './styles.scss';
 
 class ActionsWidget extends Component {
 
   componentDidMount() {
-    const { getActions } = this.props;
+    const { getActions, getActionsHistorical } = this.props;
     getActions();
+    getActionsHistorical();
   }
 
   render() {
@@ -33,4 +34,4 @@ const mapStateToProps = state => ({
   price: state.actionsWidget.price,
 })
 
-export default connect(mapStateToProps, { getActions })(ActionsWidget);
+export default connect(mapStateToProps, { getActions, getActionsHistorical })(ActionsWidget);

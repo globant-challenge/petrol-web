@@ -42,7 +42,6 @@ function WeatherWidget({
         lat: lat,
         lon: lng,
       });
-      console.log(`longitude: ${ lng } | latitude: ${ lat }`);
     }
   }
 

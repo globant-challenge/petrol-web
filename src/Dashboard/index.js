@@ -7,11 +7,11 @@ import ActionsChart from '../ActionsChart';
 
 import './styles.scss';
 
-function Dashboard({ historicals }) {
+function Dashboard({ data, categories }) {
   return (
     <div className="dashboard">
       <WeatherWidget />
-      {historicals && <ActionsChart data={historicals} />}
+      {data && <ActionsChart data={data} categories={categories} />}
       <div className="dashboard__cards">
         <BarrelWidget />
         <ActionWidget />
@@ -21,7 +21,8 @@ function Dashboard({ historicals }) {
 }
 
 const mapStateToProps = state => ({
-  historicals: state.actionsWidget.historicals,
+  categories: state.actionsWidget.categories,
+  data: state.actionsWidget.data,
 })
 
 export default connect(mapStateToProps, null)(Dashboard);
