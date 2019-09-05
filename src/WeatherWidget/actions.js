@@ -4,24 +4,24 @@ import {
   GET_WEATHER_SUCCESS,
 } from './actionTypes';
 
-function getWeather(payload) {
+function getWeather(params) {
   return {
     type: GET_WEATHER,
-    payload,
+    payload: params,
   };
 }
 
-function getWeatherFail(payload) {
+function getWeatherFail(errorMessage) {
   return {
     type: GET_WEATHER_FAIL,
-    payload,
+    payload: errorMessage,
   };
 }
 
-function getWeatherSuccess(payload) {
+function getWeatherSuccess(weather) {
   return {
     type: GET_WEATHER_SUCCESS,
-    payload,
+    payload: weather,
   };
 }
 

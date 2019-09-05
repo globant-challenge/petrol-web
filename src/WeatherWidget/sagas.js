@@ -13,10 +13,9 @@ import {
   getWeather,
 } from './api';
 
-function* getWeatherWorker() {
-  console.log('a');
+function* getWeatherWorker({ payload: { lat, lon } }) {
   try {
-    const payload = yield call(getWeather);
+    const payload = yield call(getWeather, lat, lon);
     yield put(getWeatherSuccess(payload));
   } catch ({ message }) {
     yield put(getWeatherFail(message));

@@ -7,12 +7,18 @@ import './styles.scss';
 import * as actions from './actions';
 import cloudy from '../Assets/Icons/cloudy.png';
 
-function WeatherWidget({ getWeather }) {
-  // function handleMount() {
-  //   getWeather();
-  // }
+function WeatherWidget({ coords, getWeather }) {
 
-  // useEffect(handleMount, []);
+  function handleUpdate() {
+    if (coords) {
+      getWeather({
+        lat: coords.latitude,
+        lon: coords.longitude,
+      });
+    }
+  }
+
+  useEffect(handleUpdate, [coords]);
 
   return (
     <div className="weather-widget">
@@ -26,6 +32,12 @@ function WeatherWidget({ getWeather }) {
 
 WeatherWidget.propTypes = {
   getWeather: PropTypes.func.isRequired,
+  coords: {},
 };
 
-export default connect(null, actions)(WeatherWidget);
+export default (connect(null, actions)(geolocated({
+  positionOptions: {
+      enableHighAccuracy: false,
+  },
+  userDecisionTimeout: 5000,
+})(WeatherWidget)));
