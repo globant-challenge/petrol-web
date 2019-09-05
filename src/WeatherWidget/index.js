@@ -44,7 +44,7 @@ function WeatherWidget({
           </div>
         </div>
         <div className="weather-widget__text-container">
-          <h4 className="weather-widget__text">Estamos en</h4>
+          <h4 className="weather-widget__text">Estás en</h4>
           <h5 className="weather-widget__subtext">{city}</h5>
         </div>
       </div>
