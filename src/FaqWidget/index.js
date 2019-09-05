@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FaqItem from '../FaqItem';
 
+import { getFaqs } from './actions';
 import './styles.scss';
 
-function FaqWidget() {
-  return (
-    <div className="faq-widget">
-      <FaqItem />
-      <FaqItem />
-      <FaqItem />
-    </div>
-  );
+class FaqWidget extends Component {
+
+  componentDidMount() {
+    const { getFaqs } = this.props;
+    getFaqs();
+  }
+
+  render() {
+    return (
+      <div className="faq-widget">
+        <FaqItem />
+        <FaqItem />
+        <FaqItem />
+      </div>
+    );
+  }
 }
 
-export default FaqWidget;
+export default connect(null, { getFaqs })(FaqWidget);

@@ -15,13 +15,16 @@ class FaqItem extends Component {
   }
 
   render() {
+    const { question, answer } = this.props;
     return (
       <div>
         <div color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>
-        ¿Qué son FAQ?
+         {question}
         </div>
         <Collapse isOpen={this.state.collapse}>
-          <div className="faq-item__container-content"></div>
+          <div className="faq-item__container-content">
+            {answer}
+          </div>
         </Collapse>
       </div>
     );
