@@ -1,5 +1,6 @@
 import DASHBOARD_ROUTE from './Dashboard/route';
 import dashboard from './Dashboard';
+import faq from './Faq';
 import Layout from './Layout';
 
 export default {
@@ -8,5 +9,6 @@ export default {
   indexRoute: { onEnter: (nextState, replace) => replace(`/${DASHBOARD_ROUTE.route}`) },
   childRoutes: [
     dashboard,
+    faq,
   ],
 };
