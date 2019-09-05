@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Collapse } from 'reactstrap';
+import downArrow from '../Assets/Icons/arrow-down.svg';
+import upArrow from '../Assets/Icons/arrow-up.svg';
+import trash from '../Assets/Icons/trash-outline.svg';
+import { deleteFaqs } from '../FaqWidget/actions';
 
 import './styles.scss';
 
@@ -15,7 +20,8 @@ class FaqItem extends Component {
   }
 
   render() {
-    const { question, answer } = this.props;
+    const { question, answer, deleteFaqs, id } = this.props;
+    const { collapse } = this.state;
     return (
       <div>
         <div
@@ -25,8 +31,23 @@ class FaqItem extends Component {
           style={{ marginBottom: '1rem' }
         }>
          {question}
+         <img
+            className="faq-item__question-trash"
+            src={trash}
+            alt=""
+            height={20}
+            width={20}
+            onClick={() => deleteFaqs(id)}
+          />
+         <img
+            className="faq-item__question-arrow"
+            src={collapse ? upArrow : downArrow}
+            alt=""
+            height={20}
+            width={20}
+          />
         </div>
-        <Collapse isOpen={this.state.collapse}>
+        <Collapse isOpen={collapse}>
           <div className="faq-item__container-content">
             {answer}
           </div>
@@ -36,4 +57,8 @@ class FaqItem extends Component {
   }
 }
 
-export default FaqItem;
+const actions = {
+  deleteFaqs,
+};
+
+export default connect(null, {...actions})(FaqItem);

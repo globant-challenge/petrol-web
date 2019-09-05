@@ -20,6 +20,7 @@ class FaqWidget extends Component {
           <FaqItem
             question={faq.question}
             answer={faq.answer}
+            id={faq.id}
           />
         ))}
       </div>

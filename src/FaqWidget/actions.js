@@ -1,7 +1,10 @@
 import {
   GET_FAQS,
   GET_FAQS_SUCCESS,
-  GET_FAQS_FAIL
+  GET_FAQS_FAIL,
+  DELETE_FAQS_FAIL,
+  DELETE_FAQS_SUCCESS,
+  DELETE_FAQS,
 } from './actionTypes';
 
 function getFaqs() {
@@ -23,8 +26,31 @@ function getFaqsFail() {
   };
 }
 
+function deleteFaqs(id) {
+  return {
+    type: DELETE_FAQS,
+    payload: { id },
+  };
+}
+
+function deleteFaqsSuccess(payload) {
+  return {
+    type: DELETE_FAQS_SUCCESS,
+    payload,
+  };
+}
+
+function deleteFaqsFail() {
+  return {
+    type: DELETE_FAQS_FAIL,
+  };
+}
+
 export {
   getFaqs,
   getFaqsFail,
   getFaqsSuccess,
+  deleteFaqs,
+  deleteFaqsSuccess,
+  deleteFaqsFail,
 };

@@ -9,3 +9,9 @@ export function getFaqs() {
   .then(({ data }) => data)
   .catch((res) => res)
 };
+
+export function deleteFaqs(id) {
+  return axios.delete(`http://ecdwapp01.azurewebsites.net/api/questions/${id}`)
+  .then(({ data }) => data)
+  .catch((res) => res)
+};
