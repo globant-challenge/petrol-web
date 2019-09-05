@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const OPEN_WEATHER = {
-  url: 'http://api.openweathermap.org/data/2.5',
+  url: 'https://api.openweathermap.org/data/2.5',
 };
 
 const openWeather = () => {
