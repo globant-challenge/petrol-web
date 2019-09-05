@@ -9,9 +9,10 @@
   flex-direction: column;
   justify-content: center;
   font-family: 'Nunito', sans-serif;
-
+  padding-left: 15px;
   &__title {
     font-weight: bold;
+    margin-bottom: 7px;
   }
 
   &__price {
@@ -22,4 +23,5 @@
   line-height: 1.5;
   letter-spacing: normal;
   }
+
 }
