@@ -1,31 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { geolocated } from "react-geolocated";
+// import { geolocated } from "react-geolocated";
 
 import './styles.scss';
 import * as actions from './actions';
 import cloudy from '../Assets/Icons/cloudy.png';
-import { getName, getMain, getWeather } from './selectors';
+import {
+  getName, 
+  getMain,
+  // getWeather,
+} from './selectors';
 
 function WeatherWidget({
-  coords,
+  // coords,
   getWeather,
   main,
   name,
-  weather,
+  // weather,
 }) {
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
 
   function handleUpdate() {
-    if (coords) {
+    // if (coords) {
+    //   getWeather({
+    //     lat: coords.latitude,
+    //     lon: coords.longitude,
+    //   });
+    // }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(displayLocationInfo);
+    }
+
+    function displayLocationInfo(position) {
+      const lng = position.coords.longitude;
+      const lat = position.coords.latitude;
+      setLat(lat);
+      setLng(lng);
       getWeather({
-        lat: coords.latitude,
-        lon: coords.longitude,
+        lat: lat,
+        lon: lng,
       });
+      console.log(`longitude: ${ lng } | latitude: ${ lat }`);
     }
   }
 
-  useEffect(handleUpdate, [coords]);
+  useEffect(handleUpdate, [lat || lng]);
 
   const city = name;
   const celcius = main && (main.temp - 273.15).toFixed(2);
@@ -55,27 +76,28 @@ function WeatherWidget({
 const mapStateToProps = state => ({
   name: getName(state),
   main: getMain(state),
-  weather: getWeather(state),
+  // weather: getWeather(state),
 });
 
 WeatherWidget.propTypes = {
-  coords: {},
+  // coords: {},
   main: {},
   name: '',
   weather: [],
 };
 
 WeatherWidget.propTypes = {
-  coords: PropTypes.object,
+  // coords: PropTypes.object,
   getWeather: PropTypes.func.isRequired,
   main: PropTypes.object,
   name: PropTypes.string,
   weather: PropTypes.array,
 };
 
-export default (connect(mapStateToProps, actions)(geolocated({
-  positionOptions: {
-      enableHighAccuracy: false,
-  },
-  userDecisionTimeout: 5000,
-})(WeatherWidget)));
+// export default (connect(mapStateToProps, actions)(geolocated({
+//   positionOptions: {
+//       enableHighAccuracy: false,
+//   },
+//   userDecisionTimeout: 5000,
+// })(WeatherWidget)));
+export default connect(mapStateToProps, actions)(WeatherWidget);
