@@ -1,6 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
+  getFaqs as getFaqsAction,
   getFaqsFail,
   getFaqsSuccess,
   deleteFaqsSuccess,
@@ -30,10 +31,11 @@ export function* getFaqsWatcher() {
   yield takeLatest(GET_FAQS, getFaqssWorker);
 }
 
-function* deleteFaqsWorker(payload) {
+function* deleteFaqsWorker({ payload }) {
   try {
     const data = yield call(deleteFaqs, payload.id);
     yield put(deleteFaqsSuccess(data));
+    yield put(getFaqsAction());
   } catch ({ message }) {
     yield put(deleteFaqsFail(message));
   }
@@ -45,4 +47,5 @@ export function* deleteFaqsWatcher() {
 
 export default {
   getFaqsWatcher,
+  deleteFaqsWatcher,
 };
