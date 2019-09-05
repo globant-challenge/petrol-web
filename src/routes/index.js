@@ -1,6 +1,7 @@
 import DASHBOARD_ROUTE from './Dashboard/route';
 import dashboard from './Dashboard';
 import faq from './Faq';
+import login from './Login';
 import Layout from './Layout';
 
 export default {
@@ -10,5 +11,6 @@ export default {
   childRoutes: [
     dashboard,
     faq,
+    login,
   ],
 };

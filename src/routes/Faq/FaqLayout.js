@@ -1,10 +1,22 @@
 import React from 'react';
-import FaqWidget from '../../FaqWidget';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-function FaqLayout() {
+import FaqWidget from '../../FaqWidget';
+import Login from '../../Login';
+
+function FaqLayout({ user }) {
   return (
-    <FaqWidget />
+    user
+      ? <FaqWidget isAdmin={user.admin} />
+      : <Login />
   );
 }
 
-export default FaqLayout;
+FaqLayout.propTypes = {
+  user: PropTypes.object,
+};
+
+const mapStateToProps = ({ session: { user } }) => ({ user });
+
+export default connect(mapStateToProps)(FaqLayout);
