@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import WeatherWidget from '../WeatherWidget';
+import BarrelWidget from '../BarrelWidget';
 
 function Dashboard() {
   return (
-    <WeatherWidget />
+    <Fragment>
+      <WeatherWidget />
+      <BarrelWidget />
+    </Fragment>
   );
 }
 
