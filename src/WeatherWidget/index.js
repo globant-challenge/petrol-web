@@ -60,10 +60,17 @@ const mapStateToProps = state => ({
 
 WeatherWidget.propTypes = {
   coords: {},
-  getWeather: PropTypes.func.isRequired,
   main: {},
   name: '',
   weather: [],
+};
+
+WeatherWidget.propTypes = {
+  coords: PropTypes.object,
+  getWeather: PropTypes.func.isRequired,
+  main: PropTypes.object,
+  name: PropTypes.string,
+  weather: PropTypes.array,
 };
 
 export default (connect(mapStateToProps, actions)(geolocated({
