@@ -19,8 +19,15 @@ class FaqItem extends Component {
     this.setState(state => ({ collapse: !state.collapse }));
   }
 
+  handleDelete(e) {
+    const { id , deleteFaqs } = this.props;
+    console.log(e);
+    deleteFaqs(id);
+    e.stopPropagation();
+  }
+
   render() {
-    const { question, answer, deleteFaqs, id } = this.props;
+    const { question, answer } = this.props;
     const { collapse } = this.state;
     return (
       <div>
@@ -37,7 +44,7 @@ class FaqItem extends Component {
             alt=""
             height={20}
             width={20}
-            onClick={() => deleteFaqs(id)}
+            onClick={(e) => this.handleDelete(e)}
           />
          <img
             className="faq-item__question-arrow"
