@@ -1,0 +1,12 @@
+import DASHBOARD_ROUTE from './Dashboard/route';
+import dashboard from './Dashboard';
+import Layout from './Layout';
+
+export default {
+  path: '/',
+  component: Layout,
+  indexRoute: { onEnter: (nextState, replace) => replace(`/${DASHBOARD_ROUTE.route}`) },
+  childRoutes: [
+    dashboard,
+  ],
+};
