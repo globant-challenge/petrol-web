@@ -6,8 +6,15 @@ import { geolocated } from "react-geolocated";
 import './styles.scss';
 import * as actions from './actions';
 import cloudy from '../Assets/Icons/cloudy.png';
+import { getName, getMain, getWeather } from './selectors';
 
-function WeatherWidget({ coords, getWeather }) {
+function WeatherWidget({
+  coords,
+  getWeather,
+  main,
+  name,
+  weather,
+}) {
 
   function handleUpdate() {
     if (coords) {
@@ -20,22 +27,46 @@ function WeatherWidget({ coords, getWeather }) {
 
   useEffect(handleUpdate, [coords]);
 
+  const city = name;
+  const celcius = main && (main.temp - 273.15).toFixed(2);
+  const fahrenheit = main && ((main.temp - 273.15) * 9/5 + 32).toFixed(2);
+  // const weatherToShow = weather && weather[0].main;
+
   return (
     <div className="weather-widget">
       <div className="weather-widget__container">
-        <img src={cloudy} className="weather-widget__icon" alt="weather" />
-        <h4 className="weather-widget__text">22º C - 45F</h4>
+        <div className="weather-widget__temp-container">
+          <img src={cloudy} className="weather-widget__icon" alt="weather" />
+          {/* El clima esta {weatherToShow} */}
+          <div className="weather-widget__temp-container">
+            <h4 className="weather-widget__temp">{celcius} C</h4>
+            <h5 className="weather-widget__subtemp">/ {fahrenheit}F</h5>
+          </div>
+        </div>
+        <div className="weather-widget__text-container">
+          <h4 className="weather-widget__text">Estamos en</h4>
+          <h5 className="weather-widget__subtext">{city}</h5>
+        </div>
       </div>
     </div>
   );
 }
 
+const mapStateToProps = state => ({
+  name: getName(state),
+  main: getMain(state),
+  weather: getWeather(state),
+});
+
 WeatherWidget.propTypes = {
-  getWeather: PropTypes.func.isRequired,
   coords: {},
+  getWeather: PropTypes.func.isRequired,
+  main: {},
+  name: '',
+  weather: [],
 };
 
-export default (connect(null, actions)(geolocated({
+export default (connect(mapStateToProps, actions)(geolocated({
   positionOptions: {
       enableHighAccuracy: false,
   },

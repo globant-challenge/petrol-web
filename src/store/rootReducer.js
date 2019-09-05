@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import WeatherWidget from '../WeatherWidget/reducer';
+import weatherWidget from '../WeatherWidget/reducer';
 import barrelWidget from '../BarrelWidget/reducer';
 
 const appReducer = combineReducers({
-  WeatherWidget,
+  weatherWidget,
   barrelWidget,
 });
 
