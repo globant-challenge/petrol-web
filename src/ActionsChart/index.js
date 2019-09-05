@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 
 class ActionChart extends Component {
   render() {
-    const { data } = this.props;
-    const toShow = data.map(stats => stats.close);
-    const days = data.map(stats => moment(stats.timestamp).format('DD-MM-YYYY'));
+    const { data, categories } = this.props;
+    const toShow = data.map(stats => Number(stats.close));
 
     const options =  {
       title: {
           text: 'Accion Ecopetrol'
       },
       xAxis: {
-        categories: days,
+        categories,
       },
       yAxis: {
           title: {
@@ -35,7 +33,7 @@ class ActionChart extends Component {
     },
       series: [{
           name: 'Price',
-          data: [...toShow]
+          data: toShow,
       }],
       responsive: {
           rules: [{
@@ -52,6 +50,7 @@ class ActionChart extends Component {
           }]
       }
     };
+
     return (
       <div>
         <HighchartsReact

@@ -6,16 +6,20 @@ import {
   getFaqsSuccess,
   deleteFaqsSuccess,
   deleteFaqsFail,
+  addFaqsSuccess,
+  addFaqsFail,
 } from './actions';
 
 import {
   GET_FAQS,
   DELETE_FAQS,
+  ADD_FAQS,
 } from './actionTypes';
 
 import {
   getFaqs,
   deleteFaqs,
+  addFaqs,
 } from './api';
 
 function* getFaqssWorker() {
@@ -45,7 +49,23 @@ export function* deleteFaqsWatcher() {
   yield takeLatest(DELETE_FAQS, deleteFaqsWorker);
 }
 
+function* addFaqsWorker({ payload }) {
+  try {
+    const { ask, answ } = payload;
+    const data = yield call(addFaqs, ask, answ);
+    yield put(addFaqsSuccess(data));
+    yield put(getFaqsAction());
+  } catch ({ message }) {
+    yield put(addFaqsFail(message));
+  }
+}
+
+export function* addFaqsWatcher() {
+  yield takeLatest(ADD_FAQS, addFaqsWorker);
+}
+
 export default {
   getFaqsWatcher,
   deleteFaqsWatcher,
+  addFaqsWatcher,
 };

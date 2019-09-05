@@ -21,7 +21,6 @@ class FaqItem extends Component {
 
   handleDelete(e) {
     const { id , deleteFaqs } = this.props;
-    console.log(e);
     deleteFaqs(id);
     e.stopPropagation();
   }

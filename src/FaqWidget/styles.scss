@@ -1,3 +1,17 @@
 .faq-widget {
   margin: 20px;
+
+  &__add {
+    display: flex;
+    align-items: center;
+    &-text {
+      color: #bbd000;
+      margin-left: 5px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
