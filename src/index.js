@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
+// import { PersistGate } from 'redux-persist/integration/react'
 
 import './index.css';
 import routes from './routes';
@@ -15,7 +16,9 @@ const MOUNT_NODE = document.getElementById('root');
 ReactDOM.render(
   (
     <Provider store={store}>
+      {/* <PersistGate persistor={persistor}> */}
       <Router history={browserHistory} routes={routes} />
+      {/* </PersistGate> */}
     </Provider>
   ),
   MOUNT_NODE,

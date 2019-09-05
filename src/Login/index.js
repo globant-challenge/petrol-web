@@ -26,12 +26,22 @@ function Login ({ loginUser }) {
 
     if (emailDomain === 'ecopetrol.com') {
       if (typeUser === 'admin') {
+        // localStorage.setItem('user', JSON.stringify({
+        //   email: email,
+        //   password: password,
+        //   isAdmin: true,
+        // }));
         loginUser({
           email: email,
           password: password,
           isAdmin: true,
         });
       } else {
+        // localStorage.setItem('user', JSON.stringify({
+        //   email: email,
+        //   password: password,
+        //   isAdmin: false,
+        // }));
         loginUser({
           email: email,
           password: password,
